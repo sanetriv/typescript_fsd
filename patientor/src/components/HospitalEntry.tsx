@@ -1,6 +1,7 @@
 import React from "react";
+import { Entry } from "../types";
 
-const HospitalEntry = () => {
+const HospitalEntry = (entry: Entry) => {
     return (
         <div>
             asd
