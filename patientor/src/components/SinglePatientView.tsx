@@ -27,9 +27,8 @@ const SinglePatientView = () => {
       void fetchPatient(id as string);
     }
   }, [dispatch]);
-  console.log(patients);
+  
   const patient: Patient = patients[id as string];
-  console.log(patient);
   
   return(
     <div>
@@ -38,9 +37,9 @@ const SinglePatientView = () => {
       ssn: {patient.ssn}<br></br>
       occupation: {patient.occupation}
       <b><h3>entries</h3></b>
-      {patient.entries.map((entry: Entry) => (
+      {patient.entries?.map((entry: Entry) => (
         <div key={entry.id}>
-          {entry.date} {entry.description}<br></br>
+          {entry.date} <i>{entry.description}</i><br></br>
           <ul>
             {entry.diagnosisCodes?.map((diagnosis: string) => (
               <li key={diagnosis}>{diagnosis}</li>
