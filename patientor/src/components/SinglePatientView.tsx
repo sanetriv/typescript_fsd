@@ -7,7 +7,7 @@ import { Entry, Patient } from "../types";
 
 const SinglePatientView = () => {
 
-  const [{ patients }, dispatch] = useStateValue();
+  const [{ patients, diagnoses }, dispatch] = useStateValue();
 
   const { id } = useParams<{ id: string }>();
   
@@ -42,7 +42,7 @@ const SinglePatientView = () => {
           {entry.date} <i>{entry.description}</i><br></br>
           <ul>
             {entry.diagnosisCodes?.map((diagnosis: string) => (
-              <li key={diagnosis}>{diagnosis}</li>
+              <li key={diagnosis}>{diagnosis} {diagnoses[diagnosis].name}</li>
             ))}
           </ul>
         </div>
