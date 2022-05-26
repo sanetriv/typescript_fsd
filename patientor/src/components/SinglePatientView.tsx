@@ -3,14 +3,14 @@ import React from "react";
 import { useParams } from "react-router-dom";
 import { apiBaseUrl } from "../constants";
 import { updatePatient, useStateValue } from "../state";
-import { Patient } from "../types";
+import { Entry, Patient } from "../types";
 
 const SinglePatientView = () => {
 
   const [{ patients }, dispatch] = useStateValue();
 
   const { id } = useParams<{ id: string }>();
-
+  
   React.useEffect(() => {
 
     const fetchPatient = async (id: string) => {
@@ -27,8 +27,9 @@ const SinglePatientView = () => {
       void fetchPatient(id as string);
     }
   }, [dispatch]);
-  
-  const patient = patients[id as string];
+  console.log(patients);
+  const patient: Patient = patients[id as string];
+  console.log(patient);
   
   return(
     <div>
@@ -36,6 +37,17 @@ const SinglePatientView = () => {
       gender: {patient.gender}<br></br>
       ssn: {patient.ssn}<br></br>
       occupation: {patient.occupation}
+      <b><h3>entries</h3></b>
+      {patient.entries.map((entry: Entry) => (
+        <div key={entry.id}>
+          {entry.date} {entry.description}<br></br>
+          <ul>
+            {entry.diagnosisCodes?.map((diagnosis: string) => (
+              <li key={diagnosis}>{diagnosis}</li>
+            ))}
+          </ul>
+        </div>
+      ))}
     </div>
   );
 };
