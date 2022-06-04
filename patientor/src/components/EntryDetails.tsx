@@ -10,17 +10,17 @@ const assertNever = (value: never): never => {
     );
   };
 
-const EntryDetails = (entry: Entry) => {
+const EntryDetails: React.FC<{ entry: Entry }> = ({ entry }) => {
     switch(entry.type) {
     case 'Hospital':
-        return <HospitalEntry entry={entry}/>   
+        return <HospitalEntry entry={entry}/>; 
     case 'OccupationalHealthcare':
-        return <OccupationalHealthcareEntry />;
+        return <OccupationalHealthcareEntry entry={entry}/>;
     case 'HealthCheck':
-        return <HealthCheckEntry />;
+        return <HealthCheckEntry entry={entry}/>;
     default:
         return assertNever(entry);
-    };
+    }
 };
 
 export default EntryDetails;
