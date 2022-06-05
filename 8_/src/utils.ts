@@ -1,6 +1,8 @@
-import { NewPatient, Gender } from "./types";
+import { NewPatient, Gender, Entry } from "./types";
 
 type Fields = { name: unknown, dateOfBirth: unknown, ssn: unknown, gender: unknown, occupation: unknown };
+
+type EntryFields = { type: unknown }
 
 const toNewPatient = ({ name, dateOfBirth, ssn, gender, occupation } : Fields): NewPatient => {
   const newPatientEntry = {
@@ -12,6 +14,10 @@ const toNewPatient = ({ name, dateOfBirth, ssn, gender, occupation } : Fields): 
     entries: []
   };
   return newPatientEntry;
+};
+
+const toNewEntry = (fields: EntryFields): Entry => {
+  
 };
 
 const isString = (text: unknown): text is string => {
